@@ -27,7 +27,9 @@
  * @param green The green value of the pixel
  * @param blue  The blue value of the pixel
  */
-void rgb_to_hsv(unsigned char* red, unsigned char* green, unsigned char* blue);
+void RGB_To_HSV (unsigned char* red, unsigned char* green, unsigned char* blue);
+
+
 
 /**
  * @brief Convert HSV values of a pixel to RGB
@@ -36,4 +38,4 @@ void rgb_to_hsv(unsigned char* red, unsigned char* green, unsigned char* blue);
  * @param saturation_100    The saturation of the pixel (on a scale from 0 to 100)
  * @param value_100         The value of the pixel (on a scale from 0 to 100)
  */
-void hsv_to_rgb(float* hue, float* saturation_100, float* value_100);
+void HSV_To_RGB (float* hue, float* saturation_100, float* value_100);

@@ -22,7 +22,7 @@
  * 
  * @return 1 if loaded, 0 otherwise
  */
-int load(unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
+int Load (unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
 
 
 
@@ -33,7 +33,7 @@ int load(unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
  * 
  * @return 1 if saved, 0 otherwise
  */
-int save(unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
+int Save (unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
 
 
 
@@ -42,7 +42,7 @@ int save(unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
  * 
  * @param image The image to copy
  */
-void copy(unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
+void Copy (unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
 
 
 
@@ -51,7 +51,7 @@ void copy(unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
  * 
  * @param image The image to blur
  */
-void blur(unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
+void Blur (unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
 
 
 
@@ -60,7 +60,7 @@ void blur(unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
  * 
  * @param image The image to make monochrom
  */
-void monochrom(unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
+void Monochrom (unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
 
 
 
@@ -69,4 +69,4 @@ void monochrom(unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
  * 
  * @param image The image to make use to make the mosaic
  */
-void mosaic(unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
+void Mosaic (unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);

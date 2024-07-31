@@ -17,7 +17,7 @@
  * 
  * @return 1 if loaded, 0 otherwise
  */
-int load(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
+int Load (unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
 {
     char way [WAY_SIZE];
     printf("Put the way of the your original picture :\n");
@@ -44,7 +44,7 @@ int load(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
  * 
  * @return 1 if saved, 0 otherwise
  */
-int save(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
+int Save (unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
 {
     char new_way[WAY_SIZE];
     printf("Put the way to your new picture :\n");
@@ -69,12 +69,12 @@ int save(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
  * 
  * @param image The image to copy
  */
-void copy(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
+void Copy (unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
 {
     printf("You have selected the copy function\n");
-    if (load(image))
+    if (Load(image))
     {
-        save(image);
+        Save(image);
     }
 }
 
@@ -85,14 +85,14 @@ void copy(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
  * 
  * @param image The image to blur
  */
-void blur(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
+void Blur (unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
 {
     printf("You have selected the blur function\n");
     unsigned char blur_image[HEIGHT][WIDTH][PIX_SIZE];
     int size_blur = 0;
     int save_color_value = 0;
     int average_color_value = 0;
-    if (load(image)){
+    if (Load(image)){
         printf("Put the radius of the blur.\n");
         scanf("%d", &size_blur);
         save_color_value = size_blur;
@@ -125,7 +125,7 @@ void blur(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
                 }
             }
         }
-        save(blur_image);
+        Save(blur_image);
     } 	  
 }
 
@@ -136,12 +136,12 @@ void blur(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
  * 
  * @param image The image to make monochrom
  */
-void monochrom(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
+void Monochrom(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
 {
     printf("You have selected the monochrom function\n");
     unsigned int color = 1000;
     float hue = 0, saturation = 0, value = 0;
-    if (load(image)){
+    if (Load(image)){
         while (color > 360)
         {
             printf("Write the color of the monochrom (0 to 360)\n");
@@ -153,17 +153,17 @@ void monochrom(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
         {
             for(int image_y = 0; image_y < WIDTH; image_y++)
             {
-                rgb_to_hsv(&image[image_x][image_y][0], &image[image_x][image_y][1], &image[image_x][image_y][2]);
+                RGB_To_HSV(&image[image_x][image_y][0], &image[image_x][image_y][1], &image[image_x][image_y][2]);
                 hue = color;
                 saturation = image[image_x][image_y][1];
                 value = image[image_x][image_y][2];
-                hsv_to_rgb(&hue, &saturation, &value);
+                HSV_To_RGB(&hue, &saturation, &value);
                 image[image_x][image_y][0] = hue;
                 image[image_x][image_y][1] = saturation;
                 image[image_x][image_y][2] = value;
             }
         }
-        save(image);
+        Save(image);
     }
 }
   
@@ -174,14 +174,14 @@ void monochrom(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
  * 
  * @param image The image to make use to make the mosaic
  */
-void mosaic(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
+void Mosaic(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
 {
     printf("You have selected the mosaic function\n");
     unsigned char mosaic[HEIGHT/2][WIDTH/2][PIX_SIZE];
     int mos_x = 0, mos_y = 0;
     int x_image = 0, y_image = 0, pixel_select = 0;
     int center[2] = {HEIGHT/2, WIDTH/2};
-    if (load(image) == 1)
+    if (Load(image) == 1)
     {
         // CREATION OF THE SMALL PICTURE
         for (x_image = 0; x_image<HEIGHT; x_image=x_image+2)
@@ -244,6 +244,6 @@ void mosaic(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
             }
         }
 
-        save(image);
+        Save(image);
     }
 }

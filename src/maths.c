@@ -18,7 +18,7 @@
  * 
  * @return The rest
  */
-float float_modulo(float value, float modulo)
+float FloatModulo (float value, float modulo)
 {
     return value - (int)(value / modulo) * modulo;
 }
@@ -33,7 +33,7 @@ float float_modulo(float value, float modulo)
  * 
  * @return The maximum between these 2 numbers
  */
-int max_two_int (int x, int y)
+int MaxTwoInt (int x, int y)
 {
     if(x < y)
     {
@@ -56,9 +56,9 @@ int max_two_int (int x, int y)
  * 
  * @return The maximum between these 3 numbers
  */
-int max_three_int (int x, int y, int z)
+int MaxThreeInt (int x, int y, int z)
 {
-    return (max_two_int(max_two_int(x,y),z));
+    return (MaxTwoInt(MaxTwoInt(x,y),z));
 }
 
 
@@ -71,7 +71,7 @@ int max_three_int (int x, int y, int z)
  * 
  * @return The minimum between these 2 numbers
  */
-int min_two_int (int x, int y){
+int MinTwoInt (int x, int y){
     if (x < y)
     {
         return x;
@@ -93,7 +93,7 @@ int min_two_int (int x, int y){
  * 
  * @return The minimum between these 3 numbers
  */
-int min_three_int(int x, int y, int z)
+int MinThreeInt (int x, int y, int z)
 {
-    return (min_two_int(min_two_int(x,y),z));
+    return (MinTwoInt(MinTwoInt(x,y),z));
 }

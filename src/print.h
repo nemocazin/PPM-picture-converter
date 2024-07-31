@@ -15,4 +15,4 @@
 /**
  * @brief Print the menu at the start
  */
-void menu_display();
+void DiplayMenu ();

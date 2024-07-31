@@ -10,7 +10,7 @@ int main(int argc, char** argv)
     unsigned char red = 0, green = 0, blue = 0;
     float hue = 0, saturation = 0, value = 0;
     while (1) {
-        menu_display();
+        DiplayMenu();
         scanf("%d", &select);
 
         switch (select) {
@@ -18,11 +18,11 @@ int main(int argc, char** argv)
                 return 0;
 
             case 1:
-                copy(image);
+                Copy(image);
                 break;
 
             case 2:
-                blur(image);
+                Blur(image);
                 break;
 
             case 3:
@@ -33,7 +33,7 @@ int main(int argc, char** argv)
                 scanf("%hhu", &green);
                 printf("Choose the value of blue to convert (0 to 255): \n");
                 scanf("%hhu", &blue);
-                rgb_to_hsv(&red, &green, &blue);
+                RGB_To_HSV(&red, &green, &blue);
                 printf("Hue worth %d, Saturation worth %d, Value worth %d\n", red, green, blue);
                 break;
 
@@ -45,16 +45,16 @@ int main(int argc, char** argv)
                 scanf("%f", &saturation);
                 printf("Choose the value of value to convert (0 to 100): \n");
                 scanf("%f", &value);
-                hsv_to_rgb(&hue, &saturation, &value);
+                HSV_To_RGB(&hue, &saturation, &value);
                 printf("Red worth %f, Green worth %f, Blue worth %f\n", hue, saturation, value);
                 break;
 
             case 5:
-                monochrom(image);
+                Monochrom(image);
                 break;
 
             case 6:
-                mosaic(image);
+                Mosaic(image);
                 break;
 
             default:

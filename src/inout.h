@@ -1,5 +1,10 @@
-// Originally from Jeremie Dequidt and Laure Gonnord
-// Modified by Julien Forget
+/**
+ * @brief     H file for the inout file
+ * 
+ * @author    Originally from Jeremie Dequidt and Laure Gonnord and modified by Julien Forget
+ *            New modifications by Némo Cazin
+ * @date      2024
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
