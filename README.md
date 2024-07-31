@@ -6,6 +6,7 @@
  * [Prerequisites](#prerequisites)
  * [Usage](#usage)
  * [build folder](#build-folder)
+ * [images folder](#images-folder)
  * [log folder](#log-folder)
  * [src folder](#src-folder)
  * [tests folder](#tests-folder)
