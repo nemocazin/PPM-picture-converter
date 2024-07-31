@@ -1,4 +1,7 @@
 .vscode/
 build/*
-log/*
+!build/.gitkeep 
+logs/*
+!logs/.gitkeep 
 images/*
+!images/.gitkeep 
