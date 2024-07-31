@@ -14,7 +14,6 @@
     #define _FUNCTIONS_H_
 #endif
 
-
 /**
  * @brief Load a picture from a repertory 
  * 
@@ -41,17 +40,21 @@ int Save (unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
  * @brief Copy a picture from a repertory 
  * 
  * @param image The image to copy
+ * 
+ * @return 1 if copy done, 0 otherwise
  */
-void Copy (unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
+int Copy (unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
 
 
 
 /**
  * @brief Blur a picture from a repertory 
  * 
- * @param image The image to blur
+ * @param image The image to 
+ * 
+ * @return 1 if blur done, 0 otherwise
  */
-void Blur (unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
+int Blur (unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
 
 
 
@@ -59,8 +62,10 @@ void Blur (unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
  * @brief Change the color to monochrom of a picture
  * 
  * @param image The image to make monochrom
+ * 
+ * @return 1 if monochrom done, 0 otherwise
  */
-void Monochrom (unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
+int Monochrom (unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
 
 
 
@@ -68,5 +73,7 @@ void Monochrom (unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
  * @brief Make a mosaic from a picture
  * 
  * @param image The image to make use to make the mosaic
+ * 
+ * @return 1 if mosaic done, 0 otherwise
  */
-void Mosaic (unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
+int Mosaic (unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);

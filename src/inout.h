@@ -16,9 +16,13 @@
 #endif
 
 #define MAX_INTENSITY 255
-#define HEIGHT 600
-#define WIDTH 800
-#define PIX_SIZE 3
+#define HEIGHT        600
+#define WIDTH         800
+#define PIX_SIZE      3
+#define SAVED         1
+#define LOADED        1
+#define NOTSAVED      0 
+#define NOTLOADED     0
 
 
 
@@ -29,7 +33,7 @@
  * @param image Array where to store the pixel intensities
  * @return 1 if loaded, 0 otherwise
  */
-int load_image(const char *file_name, unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
+int LoadImage(const char *file_name, unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
 
 
 
@@ -40,4 +44,4 @@ int load_image(const char *file_name, unsigned char image[HEIGHT][WIDTH][PIX_SIZ
  * @param image Array storing the pixel intensities
  * @return 1 if saved, 0 otherwise
  */
-int save_image(const char *file_name, unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
+int SaveImage(const char *file_name, unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);

@@ -16,8 +16,10 @@
  * @param red   The red value of the pixel
  * @param green The green value of the pixel
  * @param blue  The blue value of the pixel
+ * 
+ * @return 1 if convertion's done, 0 otherwise
  */
-void RGB_To_HSV (unsigned char* red, unsigned char* green, unsigned char* blue)
+int RGB_To_HSV (unsigned char* red, unsigned char* green, unsigned char* blue)
 {
     float hue = 0, saturation = 0, value = 0;
     int max = MaxThreeInt(*red, *green, *blue);
@@ -55,12 +57,22 @@ void RGB_To_HSV (unsigned char* red, unsigned char* green, unsigned char* blue)
     value = (float) (max / 255.00) * 100.00;
     *red = hue;
     *green = saturation;
-    *blue = value;    
+    *blue = value;   
+    return CONVERTIONDONE; 
 }
 
 
 
-void HSV_To_RGB (float* hue, float* saturation_100, float* value_100)
+/**
+ * @brief Convert HSV values of a pixel to RGB
+ * 
+ * @param hue               The hue of the pixel
+ * @param saturation_100    The saturation of the pixel (on a scale from 0 to 100)
+ * @param value_100         The value of the pixel (on a scale from 0 to 100)
+ * 
+ * @return 1 if convertion's done, 0 otherwise
+ */
+int HSV_To_RGB (float* hue, float* saturation_100, float* value_100)
 {
     float temp_red = 0, temp_green = 0, temp_blue = 0;
     float saturation = 0, value = 0;
@@ -112,4 +124,5 @@ void HSV_To_RGB (float* hue, float* saturation_100, float* value_100)
     *hue            = (temp_red + m) * 255;
     *saturation_100 = (temp_green + m) * 255;
     *value_100      = (temp_blue + m) * 255;
+    return CONVERTIONDONE;
 }

@@ -17,6 +17,7 @@
 #endif
 
 #define WAY_SIZE 200
+#define CONVERTIONDONE      1
 
 
 
@@ -26,8 +27,10 @@
  * @param red   The red value of the pixel
  * @param green The green value of the pixel
  * @param blue  The blue value of the pixel
+ * 
+ * @return 1 if convertion's done, 0 otherwise
  */
-void RGB_To_HSV (unsigned char* red, unsigned char* green, unsigned char* blue);
+int RGB_To_HSV (unsigned char* red, unsigned char* green, unsigned char* blue);
 
 
 
@@ -37,5 +40,7 @@ void RGB_To_HSV (unsigned char* red, unsigned char* green, unsigned char* blue);
  * @param hue               The hue of the pixel
  * @param saturation_100    The saturation of the pixel (on a scale from 0 to 100)
  * @param value_100         The value of the pixel (on a scale from 0 to 100)
+ * 
+ * @return 1 if convertion's done, 0 otherwise
  */
-void HSV_To_RGB (float* hue, float* saturation_100, float* value_100);
+int HSV_To_RGB (float* hue, float* saturation_100, float* value_100);

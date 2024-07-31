@@ -21,18 +21,15 @@ int Load (unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
 {
     char way [WAY_SIZE];
     printf("Put the way of the your original picture :\n");
-    printf("Exemple : /home/c/m/cmartin/images/polarbear.ppm\n");
+    printf("Example : /home/c/m/cmartin/images/polarbear.ppm\n");
     scanf("%s", way);
-    if (load_image(way, image))
+    if (LoadImage(way, image))
     {
-        printf("The picture has been loaded\n");
-        return 1;
+        printf("The picture has been loaded.\n");
+        return LOADED;
     }
-    else
-    {
-        printf("Couldn't load the picture.\n");
-        return 0;
-    }
+    printf("Couldn't load the picture.\n");
+    return NOTLOADED;
 }
 
 
@@ -48,18 +45,15 @@ int Save (unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
 {
     char new_way[WAY_SIZE];
     printf("Put the way to your new picture :\n");
-    printf("Exemple : /home/c/m/cmartin/images/polarbear_modified.ppm\n");
+    printf("Example : /home/c/m/cmartin/images/polarbear_modified.ppm\n");
     scanf("%s", new_way);
-    if (save_image(new_way, image))
+    if (SaveImage(new_way, image))
     {
-        printf("The picture has been saved\n");
-        return 1;
+        printf("The picture has been saved.\n");
+        return SAVED;
     }
-    else
-    {
-        printf("Couldn't save the picture.\n");
-        return 0;
-    }
+    printf("Couldn't save the picture.\n");
+    return NOTLOADED;
 }
 
 
@@ -68,14 +62,18 @@ int Save (unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
  * @brief Copy a picture from a repertory 
  * 
  * @param image The image to copy
+ * 
+ * @return 1 if copy done, 0 otherwise
  */
-void Copy (unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
+int Copy (unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
 {
-    printf("You have selected the copy function\n");
+    printf("You have selected the copy function.\n");
     if (Load(image))
     {
         Save(image);
+        return SAVED;
     }
+    return NOTLOADED;
 }
 
 
@@ -83,17 +81,19 @@ void Copy (unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
 /**
  * @brief Blur a picture from a repertory 
  * 
- * @param image The image to blur
+ * @param image The image to 
+ * 
+ * @return 1 if blur done, 0 otherwise
  */
-void Blur (unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
+int Blur (unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
 {
-    printf("You have selected the blur function\n");
+    printf("You have selected the blur function.\n");
     unsigned char blur_image[HEIGHT][WIDTH][PIX_SIZE];
     int size_blur = 0;
     int save_color_value = 0;
     int average_color_value = 0;
     if (Load(image)){
-        printf("Put the radius of the blur.\n");
+        printf("Put the radius of the blur : \n");
         scanf("%d", &size_blur);
         save_color_value = size_blur;
         // Addition of the 8 pixels value around one pixel to this pixel
@@ -126,7 +126,9 @@ void Blur (unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
             }
         }
         Save(blur_image);
-    } 	  
+        return SAVED;
+    } 
+    return NOTLOADED;	  
 }
 
 
@@ -135,8 +137,10 @@ void Blur (unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
  * @brief Change the color to monochrom of a picture
  * 
  * @param image The image to make monochrom
+ * 
+ * @return 1 if monochrom done, 0 otherwise
  */
-void Monochrom(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
+int Monochrom(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
 {
     printf("You have selected the monochrom function\n");
     unsigned int color = 1000;
@@ -164,7 +168,9 @@ void Monochrom(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
             }
         }
         Save(image);
+        return SAVED;
     }
+    return NOTLOADED;
 }
   
 
@@ -174,7 +180,7 @@ void Monochrom(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
  * 
  * @param image The image to make use to make the mosaic
  */
-void Mosaic(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
+int Mosaic(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
 {
     printf("You have selected the mosaic function\n");
     unsigned char mosaic[HEIGHT/2][WIDTH/2][PIX_SIZE];
@@ -245,5 +251,7 @@ void Mosaic(unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
         }
 
         Save(image);
+        return SAVED;
     }
+    return NOTLOADED;
 }

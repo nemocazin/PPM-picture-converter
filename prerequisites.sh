@@ -19,11 +19,11 @@ RESET='\033[0m'
 
 # Create log directory if it doesn't exist
 mkdir -p build
-mkdir -p log
+mkdir -p logs
 mkdir -p images
 
 # Redirect stdout and stderr to log/log_install
-exec > >(tee -a log/install.log) 2>&1
+exec > >(tee -a logs/install.log) 2>&1
 
 
 

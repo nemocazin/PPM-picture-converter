@@ -12,7 +12,11 @@
     #define _PRINT_H_
 #endif
 
+#define PRINTDONE 1
+
 /**
  * @brief Print the menu at the start
+ * 
+ * @return 1
  */
-void DiplayMenu ();
+int DiplayMenu ();

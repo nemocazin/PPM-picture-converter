@@ -17,9 +17,15 @@
 
 
 
-int load_image_priv(const char *file_name, unsigned char *image, int exp_height, int exp_width, int pix_size)
-{
-    FILE *fp;
+/**
+ * @brief Load a PPM image into a char array
+ * 
+ * @param file_name Name of the input file
+ * @param image Array where to store the pixel intensities
+ * @return 1 if loaded, 0 otherwise
+ */
+int LoadImage(const char *file_name, unsigned char image[HEIGHT][WIDTH][PIX_SIZE]) {
+  FILE *fp;
     unsigned int type;
     int imax, w, h, debug;
     unsigned char buffer[BUF_SIZE];
@@ -30,7 +36,7 @@ int load_image_priv(const char *file_name, unsigned char *image, int exp_height,
         #ifdef DEBUG
             printf("[load_image] Cannot open file %s\n", file_name);
         #endif
-        return 0;
+        return NOTLOADED;
     }
 
     #ifdef DEBUG
@@ -43,7 +49,7 @@ int load_image_priv(const char *file_name, unsigned char *image, int exp_height,
         #ifdef DEBUG
             printf("[load_image] Cannot read file \n");
         #endif
-        return 0;
+        return NOTLOADED;
     }
 
     if ((type = buffer[1] - 48) != 6) 
@@ -51,7 +57,7 @@ int load_image_priv(const char *file_name, unsigned char *image, int exp_height,
         #ifdef DEBUG
             printf("[load_image] Image type is not P6 (P%d instead)\n", type);
         #endif
-        return 0;
+        return NOTLOADED;
     }
 
     /* 2- skipping comments */
@@ -62,7 +68,7 @@ int load_image_priv(const char *file_name, unsigned char *image, int exp_height,
             #ifdef DEBUG
                 printf("[load_image] File read error\n");
             #endif
-            return 0;
+            return NOTLOADED;
         }
     }
     while (buffer[0] == '#');
@@ -73,7 +79,7 @@ int load_image_priv(const char *file_name, unsigned char *image, int exp_height,
         #ifdef DEBUG
             printf("[load_image] Cannot read image dimensions\n");
         #endif
-        return 0;
+        return NOTLOADED;
     }
 
     if (fgets((char *) buffer, BUF_SIZE, fp) == NULL)
@@ -81,7 +87,7 @@ int load_image_priv(const char *file_name, unsigned char *image, int exp_height,
         #ifdef DEBUG
             printf("[load_image] Cannot read intensity\n");
         #endif
-        return 0;
+        return NOTLOADED;
     }
 
     if (sscanf((char *) buffer, "%d", &imax) == 0) 
@@ -89,49 +95,38 @@ int load_image_priv(const char *file_name, unsigned char *image, int exp_height,
         #ifdef DEBUG
             printf("[load_image] Cannot read max intensity\n");
         #endif
-        return 0;
+        return NOTLOADED;
     }
 
-    if ((w != exp_width) || (h != exp_height) || (imax != MAX_INTENSITY)) 
+    if ((w != WIDTH) || (h != HEIGHT) || (imax != MAX_INTENSITY)) 
     {
         #ifdef DEBUG
             printf("[load_image] Image parameters do no match requirements\n");
             printf("w=%d,h=%d,imax=%d\n", w, h, imax);
-            return 0;
+            return NOTLOADED;
         #endif
     }
 
     if (image == NULL) 
     {
-        return 0;
+        return NOTLOADED;
     }
 
     /* Read pixels */
-    if ((debug = fread(image, 1, w * h * pix_size, fp)) != (w * h * pix_size)) 
+    if ((debug = fread(image, 1, w * h * PIX_SIZE, fp)) != (w * h * PIX_SIZE)) 
     {
         #ifdef DEBUG
             printf("[load_image] Could not read all pixel intensities (only read %d)\n", debug);
         #endif
-        return 0;
+        return NOTLOADED;
     }
 
     /* Everything ok if we get here */
     fclose(fp);
     #ifdef DEBUG
-    printf("[load_image] File closed\n");
+        printf("[load_image] File closed\n");
     #endif
-    return 1;
-}
-
-/**
- * @brief Load a PPM image into a char array
- * 
- * @param file_name Name of the input file
- * @param image Array where to store the pixel intensities
- * @return 1 if loaded, 0 otherwise
- */
-int load_image(const char *file_name, unsigned char image[HEIGHT][WIDTH][PIX_SIZE]) {
-  return (load_image_priv(file_name, ((unsigned char*)image), HEIGHT, WIDTH, PIX_SIZE));
+    return LOADED;
 }
 
 
@@ -143,7 +138,7 @@ int load_image(const char *file_name, unsigned char image[HEIGHT][WIDTH][PIX_SIZ
  * @param image Array storing the pixel intensities
  * @return 1 if saved, 0 otherwise
  */
-int save_image(const char *file_name, unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
+int SaveImage(const char *file_name, unsigned char image[HEIGHT][WIDTH][PIX_SIZE])
 {
     FILE *fp;
 
@@ -153,7 +148,7 @@ int save_image(const char *file_name, unsigned char image[HEIGHT][WIDTH][PIX_SIZ
         #ifdef DEBUG
             printf("[save_image] Cannot open file %s\n",file_name);
         #endif
-        return 0;
+        return NOTSAVED;
     }
 
     #ifdef DEBUG
@@ -167,7 +162,7 @@ int save_image(const char *file_name, unsigned char image[HEIGHT][WIDTH][PIX_SIZ
             printf
             ("[save_image] Cannot write image parameters\n");
         #endif
-        return 0;
+        return NOTSAVED;
     }
 
     #ifdef DEBUG
@@ -180,7 +175,7 @@ int save_image(const char *file_name, unsigned char image[HEIGHT][WIDTH][PIX_SIZ
         #ifdef DEBUG
             printf("[save_image] Cannot write pixel intensities\n");
         #endif
-        return 0;
+        return NOTSAVED;
     }
 
     /* end of function */
@@ -188,5 +183,5 @@ int save_image(const char *file_name, unsigned char image[HEIGHT][WIDTH][PIX_SIZ
     #ifdef DEBUG
         printf("[save_image] File closed\n");
     #endif
-    return 1;
+    return SAVED;
 }
