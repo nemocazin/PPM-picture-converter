@@ -14,7 +14,7 @@ EXTRA_LDFLAGS 	= --coverage
 # Directories & files
 SRCDIR 			= src/
 BUILDDIR 		= build/
-LOGDIR 			= log/
+LOGDIR 			= logs/
 TARGET			= $(BUILDDIR)main
 LOGFILE			= $(LOGDIR)make.log
 
@@ -41,7 +41,7 @@ all : | $(LOG_FILE)
 	@$(MAKE) build 2>&1 | tee -a $(LOGFILE)
 
 ####################### BUILDING FILES ########################
-build: $(BUILDDIR)inout.o $(BUILDDIR)convert.o $(BUILDDIR)main.o
+build: $(BUILDDIR)inout.o $(BUILDDIR)convert.o $(BUILDDIR)main.o $(BUILDDIR)maths.o $(BUILDDIR)print.o $(BUILDDIR)functions.o 
 	@echo "$(CYAN)[LOG] Compiling c files...$(RESET)"
 	$(CC) $(CFLAGS)  $^ -o $(TARGET)
 	@echo "$(BLUE)[LOG] Compiling done.$(RESET)"
@@ -53,6 +53,15 @@ $(BUILDDIR)convert.o: $(SRCDIR)convert.c
 	$(CC) $(CFLAGS) -c $< -o $@ 
 
 $(BUILDDIR)main.o: main.c
+	$(CC) $(CFLAGS) -c $< -o $@ 
+
+$(BUILDDIR)maths.o: $(SRCDIR)maths.c
+	$(CC) $(CFLAGS) -c $< -o $@ 
+
+$(BUILDDIR)print.o: $(SRCDIR)print.c
+	$(CC) $(CFLAGS) -c $< -o $@ 
+
+$(BUILDDIR)functions.o: $(SRCDIR)functions.c
 	$(CC) $(CFLAGS) -c $< -o $@ 
 ###############################################################
 

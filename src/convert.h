@@ -3,7 +3,6 @@
 #include "inout.h"
 #include "print.h"
 #include "maths.h"
-#include "functions.h"
 
 #ifndef _CONVERT_H_
     #define _CONVERT_H_

@@ -1,6 +1,5 @@
 #include "convert.h"
 
-
 void rgb_to_hsv(unsigned char* red, unsigned char* green, unsigned char* blue)
 {
     float hue = 0, saturation = 0, value = 0;

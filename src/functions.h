@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "inout.h"
+#include "convert.h"
 
 #ifndef _FUNCTIONS_H_
     #define _FUNCTIONS_H_
