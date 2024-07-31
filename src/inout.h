@@ -15,25 +15,24 @@
 #define WIDTH 800
 #define PIX_SIZE 3
 
-/*********************************************************
- * Input/output images
- *********************************************************
- */
 
 
-/*
-  Load a PPM image into a char array
- * - Parameters : 
- *		file_name: Name of the input file
- *		image: array where to store the pixel intensities
- * - Return value : 1 if everything went well, 0 otherwise
+/**
+ * @brief Load a PPM image into a char array
+ * 
+ * @param file_name Name of the input file
+ * @param image Array where to store the pixel intensities
+ * @return 1 if loaded, 0 otherwise
  */
 int load_image(const char *file_name, unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);
 
-/*
-  Save a PPM image from a char array
- * file_name: Name of the output file
- * image: array storing the pixel intensities
- * Return: 1 if everything went well, 0 otherwise
-*/
+
+
+/**
+ * @brief Save a PPM image from a char array
+ * 
+ * @param file_name Name of the output file
+ * @param image Array storing the pixel intensities
+ * @return 1 if saved, 0 otherwise
+ */
 int save_image(const char *file_name, unsigned char image[HEIGHT][WIDTH][PIX_SIZE]);

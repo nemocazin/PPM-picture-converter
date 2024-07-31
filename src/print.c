@@ -7,6 +7,11 @@
 
 #include "print.h"
 
+
+
+/**
+ * @brief Print the menu at the start
+ */
 void menu_display()
 {
     printf("######################################################################\n");
@@ -26,4 +31,5 @@ void menu_display()
     printf("######################################################################\n");
     printf("\n");
     printf("Which function do you want to choose ?\n");  
+    fflush(stdout);
 }

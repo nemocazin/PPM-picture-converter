@@ -1,5 +1,22 @@
+/**
+ * @brief     C file for the pixel convertion file
+ *            These functions are used to replaced the math.h lib 
+ * 
+ * @author    CAZIN Némo
+ * @date      2024
+ */
+
 #include "convert.h"
 
+
+
+/**
+ * @brief Convert RGB values of a pixel to HSV
+ * 
+ * @param red   The red value of the pixel
+ * @param green The green value of the pixel
+ * @param blue  The blue value of the pixel
+ */
 void rgb_to_hsv(unsigned char* red, unsigned char* green, unsigned char* blue)
 {
     float hue = 0, saturation = 0, value = 0;
